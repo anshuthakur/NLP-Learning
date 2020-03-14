@@ -35,16 +35,16 @@ def compute_tfidf(all_text, unique_words, TF_vals):
     tf_vals = [compute_tf(text, unique_words) for text in all_text]
     idf_vals = compute_idf(all_text, unique_words)
 
-    tf_idf = [[0] * len(unique_words)] * len(all_text)
+    tf_idf = list()
 
     for i in range(len(all_text)):
+        temp = list()
         for j, w in enumerate(unique_words):
-            print(tf_vals[i][j])
             z1 = tf_vals[i][j]
             z2 = idf_vals[w]
             z3 = z1 * z2
-            z4 = TF_vals[i][j]
-            tf_idf[i][j] = z3
+            temp.append(z3)
+        tf_idf.append(temp)
     return tf_idf
 
 
